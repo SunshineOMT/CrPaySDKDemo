@@ -8,7 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
-typedef void (^CrlandBaseRequestSuccessBlock) (__kindof NSDictionary *successResult);
+typedef void (^CrlandBaseRequestSuccessBlock) (__kindof NSDictionary *result);
+typedef void (^CrlandBaseRequestFailureBlock) (__kindof NSError *error);
 
 @interface CrlandPayApi : NSObject
 
@@ -17,11 +18,12 @@ typedef void (^CrlandBaseRequestSuccessBlock) (__kindof NSDictionary *successRes
  *
  * @param params 请求参数
  * @param success 请求成功回调
- *
+ * @param failure 请求失败回调
  */
 
 + (void)getHousePayItemList:(NSDictionary *)params
-                    success:(CrlandBaseRequestSuccessBlock)success;
+                    success:(CrlandBaseRequestSuccessBlock)success
+                    failure:(CrlandBaseRequestFailureBlock)failure;
 
 /*!
  * @abstract 查询房屋账单列表
@@ -32,7 +34,8 @@ typedef void (^CrlandBaseRequestSuccessBlock) (__kindof NSDictionary *successRes
  */
 
 + (void)getBillList:(NSDictionary *)params
-            success:(CrlandBaseRequestSuccessBlock)success;
+            success:(CrlandBaseRequestSuccessBlock)success
+            failure:(CrlandBaseRequestFailureBlock)failure;
 
 /*!
  * @abstract 查询账单详情
@@ -43,7 +46,8 @@ typedef void (^CrlandBaseRequestSuccessBlock) (__kindof NSDictionary *successRes
  */
 
 + (void)getBillDetail:(NSDictionary *)params
-              success:(CrlandBaseRequestSuccessBlock)success;
+              success:(CrlandBaseRequestSuccessBlock)success
+              failure:(CrlandBaseRequestFailureBlock)failure;
 
 /*!
  * @abstract 查询缴费状态
@@ -54,7 +58,8 @@ typedef void (^CrlandBaseRequestSuccessBlock) (__kindof NSDictionary *successRes
  */
 
 + (void)getPayStatus:(NSDictionary *)params
-             success:(CrlandBaseRequestSuccessBlock)success;
+             success:(CrlandBaseRequestSuccessBlock)success
+             failure:(CrlandBaseRequestFailureBlock)failure;
 
 @end
 
