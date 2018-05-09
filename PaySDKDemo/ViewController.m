@@ -35,6 +35,11 @@
                              @"userId" : @"39018f40-bfcb-4084-a5cc-8f13050c23e7",
                              @"userName" : @"王羽飞"
                              };
+    NSDictionary *param3 = @{
+                             @"payId" : @"e484c8ca-c2cb-43c3-9196-56ad1cff1f72",
+                             @"userId" : @"39018f40-bfcb-4084-a5cc-8f13050c23e7",
+                             @"userName" : @"王羽飞"
+                             };
     self.resultTextView.text = @"";
     switch (sender.tag) {
         case 10:
@@ -64,7 +69,14 @@
             break;
         case 12:
         {
-            
+            [CrlandPayApi getBillDetail:param3 success:^(__kindof NSDictionary *result) {
+                NSError *error = nil;
+                NSData *rData = [NSJSONSerialization dataWithJSONObject:result options:NSJSONWritingPrettyPrinted error:&error];
+                NSString *resultStr = [[NSString alloc] initWithData:rData encoding:NSUTF8StringEncoding];
+                self.resultTextView.text = resultStr;
+            } failure:^(__kindof NSError *error) {
+                NSLog(@"%@", error);
+            }];
         }
             break;
         case 14:
